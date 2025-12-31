@@ -1,0 +1,9 @@
+{
+     "compileroptions": {
+        "baseUrl": ".",
+        "paths": {
+            "#*": [ "scr/*"]
+        }
+    },
+    "include": ["scr" ]
+}
