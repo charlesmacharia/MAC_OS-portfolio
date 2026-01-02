@@ -2,7 +2,8 @@ import { useRef } from "react";
 import { dockApps } from "../constants";
 // ISSUE FIXED: Removed trailing space after "react-tooltip" - was causing import resolution error
 import { Tooltip } from "react-tooltip"; // dont forget to run  npm install react-tooltip to download react-tooltip
-import { gsap } from "gsap/gsap-core";
+// ISSUE FIXED: Changed from 'gsap/gsap-core' to 'gsap' - using the standard import ensures proper offline functionality
+import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
 
