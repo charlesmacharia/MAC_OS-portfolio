@@ -2,8 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
-import{resolve ,dirname}from "path"
-import {filePathtoUrl} from"url"
+import { resolve, dirname } from "path"
+import { filePathtoUrl } from "url"
 
 
 export default defineConfig({
@@ -36,17 +36,17 @@ export default defineConfig({
 		})
 	],
 
-	// whats a resolve 
+	// 	// whats a resolve 
 	resolve: {
 		alias: {
 			"#components": resolve(
-		dirname(fileURLToPath(import.meta.url)),
-				 "src/components",
-	),
-			"#constants": resolve(dirname(fileURLToPath(import.meta.url)), constants),
-			// "#store": resolve(dirname(fileURLToPath(import.meta.url)), store),
-			// "#hoc": resolve(dirname(fileURLToPath(import.meta.url)), hoc),
-			// "#windows": resolve(dirname(fileURLToPath(import.meta.url)), windows),
+				dirname(fileURLToPath(import.meta.url)),
+				"src/components",
+			),
+						"#constants": resolve(dirname(fileURLToPath(import.meta.url)), constants),
+						"#store": resolve(dirname(fileURLToPath(import.meta.url)), store),
+						"#hoc": resolve(dirname(fileURLToPath(import.meta.url)), hoc),
+						"#windows": resolve(dirname(fileURLToPath(import.meta.url)), windows),
 		}
-	}}
-)
+	}
+})
