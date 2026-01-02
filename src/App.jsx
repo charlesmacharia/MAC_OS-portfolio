@@ -1,16 +1,17 @@
-import { Navbar } from './components/navbar.jsx';
-import { welcome_code as WelcomeCode } from './components/welcome.jsx';
-function App() {
+import { Dock } from "./components/dock.jsx";
+import { Navbar } from "./components/navbar";
+import { Welcome_code } from "./components/welcome";
 
-  return (
-<main>
- 
-  <Navbar></Navbar>
-  <div>
-   <WelcomeCode></WelcomeCode>
-   
-   </div>
-</main>  );
+function App() {
+    return (
+        <main>
+            <Navbar />
+            <div>
+                <Welcome_code />
+                <Dock />
+            </div>
+        </main>
+    );
 }
 
 export default App;
