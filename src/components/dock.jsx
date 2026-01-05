@@ -5,10 +5,10 @@ import { Tooltip } from "react-tooltip"; // dont forget to run  npm install reac
 // ISSUE FIXED: Changed from 'gsap/gsap-core' to 'gsap' - using the standard import ensures proper offline functionality
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-
-
+import {useWindowStore } from "C:\Users\HP\Desktop\macos_portfolio2\src\store\window.js"
 
 export const Dock = () => {
+const {openWindow } = useWindowStore();
     const dockRef = useRef(null);
 
     // animates using gsap
@@ -82,8 +82,18 @@ export const Dock = () => {
     } , [] ); //we add the empty dependacy array []  to the gsap hook when we want it to happen atthe start 
 
     const toggleApp = (appId) => {
+if(!app.canOpen)return; {/*if an app CAN NOT open then simply return ,
+    else... */}
 
-// TO-DO   implement Open Window Logic 
+// if window is already open ,then close window and pass app id of the window we want to close 
+if(window.isOpen) {
+    closeWindow(app.id)
+} //else i'll open the  app id and 
+else {
+    openWindow(app.id)
+}
+
+console.log(windows)
     };
     return (
         <section id="dock">
