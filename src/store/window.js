@@ -4,7 +4,7 @@ import {immer} from "zustand/middleware/immer"
     import { INITIAL_Z_INDEX, WINDOW_CONFIG } from "../constants";
 
 
-const useWindowStore = create(
+ export  const useWindowStore = create(
     immer((set)=> ({
         windows: WINDOW_CONFIG,
         nextZIndex : INITIAL_Z_INDEX +1,
@@ -19,7 +19,7 @@ const useWindowStore = create(
                 win.isOpen =true;
                 win.zIndex = state.nextZIndex;
                 win.data =data ?? win.data ; // if new data doesnt exist we make it the same as the data that was already there.
-                state.nextZindex++;
+                state.nextZIndex++;
             } )
 
         },

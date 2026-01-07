@@ -5,7 +5,7 @@ import { Tooltip } from "react-tooltip"; // dont forget to run  npm install reac
 // ISSUE FIXED: Changed from 'gsap/gsap-core' to 'gsap' - using the standard import ensures proper offline functionality
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import {useWindowStore } from "C:\Users\HP\Desktop\macos_portfolio2\src\store\window.js"
+import { useWindowStore } from '../store/window';
 
 export const Dock = () => {
 const {openWindow } = useWindowStore();

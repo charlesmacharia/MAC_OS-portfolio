@@ -36,17 +36,17 @@ export default defineConfig({
 		})
 	],
 
-	// 	// whats a resolve 
-	// resolve: {
-	// 	alias: {
-	// 		"#components": resolve(
-	// 			dirname(fileURLToPath(import.meta.url)),
-	// 			"src/components",
-	// 		),
-	// 					"#constants": resolve(dirname(fileURLToPath(import.meta.url)), constants),
-	// 					"#store": resolve(dirname(fileURLToPath(import.meta.url)), store),
-	// 					"#hoc": resolve(dirname(fileURLToPath(import.meta.url)), hoc),
-	// 					"#windows": resolve(dirname(fileURLToPath(import.meta.url)), windows),
-	// 	}
-	// }
+		// whats a resolve 
+	resolve: {
+		alias: {
+			"#components": resolve(
+				dirname(fileURLToPath(import.meta.url)),
+				"src/components",
+			),
+						"#constants": resolve(dirname(fileURLToPath(import.meta.url)), constants),
+						"#store": resolve(dirname(fileURLToPath(import.meta.url)), store),
+						"#hoc": resolve(dirname(fileURLToPath(import.meta.url)), hoc),
+						"#windows": resolve(dirname(fileURLToPath(import.meta.url)), windows),
+		}
+	}
 })
