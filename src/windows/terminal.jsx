@@ -3,9 +3,10 @@ import windowWrapper from "../HOC/window";
 import { Check, Flag } from "lucide-react";
 
 const Terminal = () => {
+    console.log("Terminal component rendering...");
     return (
         <>
-           <div className="header">
+           <div className="header bg-gray-800 text-white p-4">
                 <p>
                     <span className="font-bold">@kiruri_macharia %</span> about me
                 </p>

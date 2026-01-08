@@ -8,7 +8,7 @@ import { useGSAP } from "@gsap/react";
 import { useWindowStore } from '../store/window';
 
 export const Dock = () => {
-const {openWindow } = useWindowStore();
+const { openWindow, closeWindow, windows } = useWindowStore();
     const dockRef = useRef(null);
 
     // animates using gsap
@@ -82,18 +82,23 @@ const {openWindow } = useWindowStore();
     } , [] ); //we add the empty dependacy array []  to the gsap hook when we want it to happen atthe start 
 
     const toggleApp = (appId) => {
-if(!app.canOpen)return; {/*if an app CAN NOT open then simply return ,
-    else... */}
-
-// if window is already open ,then close window and pass app id of the window we want to close 
-if(window.isOpen) {
-    closeWindow(app.id)
-} //else i'll open the  app id and 
-else {
-    openWindow(app.id)
-}
-
-console.log(windows)
+        console.log(`toggleApp called with appId: ${appId}`);
+        const app = dockApps.find(app => app.id === appId);
+        if (!app?.canOpen) {
+            console.log(`App ${appId} cannot be opened`);
+            return; // If app can't be opened, return early
+        }
+        
+        console.log(`Current window state for ${appId}:`, windows[appId]);
+        // If window is already open, close it
+        if (windows[appId]?.isOpen) {
+            console.log(`Closing window ${appId}`);
+            closeWindow(appId);
+        } else {
+            // Otherwise open it
+            console.log(`Opening window ${appId}`);
+            openWindow(appId);
+        }
     };
     return (
         <section id="dock">

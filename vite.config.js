@@ -2,8 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
-import { resolve, dirname } from "path"
-import { filePathtoUrl } from "url"
+import { resolve } from 'path'
+import { fileURLToPath } from 'url'
 
 
 export default defineConfig({
@@ -36,7 +36,7 @@ export default defineConfig({
 		})
 	],
 
-		// whats a resolve 
+		// whats a resolve ?
 	resolve: {
 		alias: {
 			"#components": resolve(
