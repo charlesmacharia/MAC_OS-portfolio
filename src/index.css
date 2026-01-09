@@ -63,7 +63,7 @@ body {
 
 @layer components {
   .icon {
-    @apply p-1 hover:bg-gray-200 rounded hover:cursor-default;
+    @apply inline-flex items-center justify-center w-5 h-5 p-1 hover:bg-gray-200 rounded hover:cursor-default;
   }
 
   #welcome {
@@ -393,4 +393,37 @@ body {
       }
     }
   }
+
+
+  /* Normal window */
+.window-container {
+  position: absolute;
+  transition: all 0.3s ease;
+}
+
+/* Maximized window */
+.window-container.maximized {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  cursor: default !important; /* No dragging cursor */
+}
+
+/* Hidden minimized window */
+.window-container.minimized {
+  display: none;
+}
+
+/* Window control buttons */
+.window-controls .close {
+  background: #ff5f56;
+}
+.window-controls .minimize {
+  background: #ffbd2e;
+}
+.window-controls .maximize {
+  background: #27ca3f;
+}
 }

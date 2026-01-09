@@ -2,12 +2,13 @@ import { useRef } from "react";
 import { dockApps } from "../constants";
 // ISSUE FIXED: Removed trailing space after "react-tooltip" - was causing import resolution error
 import { Tooltip } from "react-tooltip"; // dont forget to run  npm install react-tooltip to download react-tooltip
-import { gsap } from "gsap/gsap-core";
+// ISSUE FIXED: Changed from 'gsap/gsap-core' to 'gsap' - using the standard import ensures proper offline functionality
+import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-
-
+import { useWindowStore } from '../store/window';
 
 export const Dock = () => {
+const { openWindow, closeWindow, windows } = useWindowStore();
     const dockRef = useRef(null);
 
     // animates using gsap
@@ -81,8 +82,23 @@ export const Dock = () => {
     } , [] ); //we add the empty dependacy array []  to the gsap hook when we want it to happen atthe start 
 
     const toggleApp = (appId) => {
-
-// TO-DO   implement Open Window Logic 
+        console.log(`toggleApp called with appId: ${appId}`);
+        const app = dockApps.find(app => app.id === appId);
+        if (!app?.canOpen) {
+            console.log(`App ${appId} cannot be opened`);
+            return; // If app can't be opened, return early
+        }
+        
+        console.log(`Current window state for ${appId}:`, windows[appId]);
+        // If window is already open, close it
+        if (windows[appId]?.isOpen) {
+            console.log(`Closing window ${appId}`);
+            closeWindow(appId);
+        } else {
+            // Otherwise open it
+            console.log(`Opening window ${appId}`);
+            openWindow(appId);
+        }
     };
     return (
         <section id="dock">
