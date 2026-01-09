@@ -1,7 +1,8 @@
-import { create } from "zustand";
+﻿import { create } from "zustand";
 import { immer } from "zustand/middleware/immer"
 {/* immer is a middleware that enables you perfome immutable updates (provides for  cleaner , less bug prone code.) */ }
 import { INITIAL_Z_INDEX, WINDOW_CONFIG } from "../constants";
+import { Minimize } from "lucide-react";
 
 
 export const useWindowStore = create(
@@ -17,6 +18,7 @@ export const useWindowStore = create(
 
                 const win = state.windows[windowKey]
                 win.isOpen = true;
+                win.isMinimized = false;
                 win.zIndex = state.nextZIndex;
                 win.data = data ?? win.data; // if new data doesnt exist we make it the same as the data that was already there.
                 state.nextZIndex++;
@@ -29,6 +31,8 @@ export const useWindowStore = create(
             set((state) => {
                 const win = state.windows[windowKey]
                 win.isOpen = false;
+                win.isMinimized = false;
+                win.isMaximized = false;
                 win.zIndex = INITIAL_Z_INDEX;
                 win.data = null;
 
@@ -44,6 +48,29 @@ export const useWindowStore = create(
                 win.zIndex = state.nextZIndex++;
             })
 
+        },
+
+        minimizeWindow: (windowKey) => {
+            set((state) => {
+                const win = state.windows[windowKey]
+                win.isMinimized = true;
+            })
+        },
+
+        restoreWindow: (windowKey) => {  // For "un-minimize"
+            set((state) => {
+                const win = state.windows[windowKey];
+                if (win) {
+                    win.isMinimized = false;
+                }
+            });
+        },
+
+        maximizeWindow: (windowKey) => {
+            set((state) => {
+                const win = state.windows[windowKey]
+                win.isMaximized = !win.isMaximized; // toggle the value of isMaximized on and off 
+            })
         }
     }))
 )

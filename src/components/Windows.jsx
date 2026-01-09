@@ -1,8 +1,10 @@
-import { useWindowStore } from "../store/window";
+﻿import { useWindowStore } from "../store/window";
 import TerminalWindow from "../windows/terminal";
+import SafariWindow from "../windows/safari";
 
 const windowComponents = {
   terminal: TerminalWindow,
+  safari: SafariWindow,
   // Add other window components here as you create them
 };
 

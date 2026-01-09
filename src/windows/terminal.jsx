@@ -1,19 +1,21 @@
 import { techStack } from "../constants";
 import windowWrapper from "../HOC/window";
 import { Check, Flag } from "lucide-react";
+import Windowcontrols from "../components/windowControls";
 
 const Terminal = () => {
     console.log("Terminal component rendering...");
     return (
         <>
-           <div className="header bg-gray-800 text-white p-4">
+           <div id="window-header" className="header bg-gray-800 text-white p-4">
+                <Windowcontrols windowKey="terminal"/>
                 <p>
-                    <span className="font-bold">@kiruri_macharia %</span> about me
+                    <span className="font-bold">@kiruri_macharia charles  %</span>about me
                 </p>
             </div>
             <div className="techstack">
                 <p>
-                    <span className="font-bold">@kiruri_macharia %</span> skill stack
+                    <span className="font-bold">@kiruri_macharia charles  %</span> Techstack
                 </p>
 
 

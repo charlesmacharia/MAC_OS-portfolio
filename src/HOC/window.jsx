@@ -1,11 +1,11 @@
-// This HOC (higher order components )is a function that takes a component as input
+﻿// This HOC (higher order components )is a function that takes a component as input
 // and then return an enhanced version of component
 
 import React, { useLayoutEffect, useRef } from "react";
 import { useWindowStore } from "../store/window";
 import { useGSAP } from "@gsap/react";
 import gsap from 'gsap';
-import  Draggable  from "gsap/Draggable";
+import Draggable from "gsap/Draggable";
 
 gsap.registerPlugin(Draggable);
 
@@ -26,7 +26,7 @@ const windowWrapper = (component, windowKey) => {
 
         // guard and use consistent name
         const win = windows?.[windowKey] || {};
-        const { isOpen = false, zIndex = 0 } = win;
+        const { isOpen = false, zIndex = 0, isMinimized = false, isMaximized = false } = win;
 
 
         const ref = useRef(null); // ref used to manage the animations
@@ -56,6 +56,17 @@ const windowWrapper = (component, windowKey) => {
                 onPress: () =>
                     focusWindow(windowKey)
             });
+
+            // kill instance of draggable 
+            const [instance] = Draggable.create(el, {
+                onPress: () =>
+                    focusWindow(windowKey),
+
+                onRelease: () => {
+                    instance.kill();  //same as return() => focusWindow(windowKey)
+                }
+            })
+
         }, []);
 
         // This handles the display changes for closing
@@ -83,7 +94,7 @@ const windowWrapper = (component, windowKey) => {
             <section
                 id={windowKey}
                 ref={ref}
-                style={{ zIndex }}
+                style={{ zIndex, ...(isMinimized || !isOpen ? { display: "none" } : {}), ...(isMaximized ? { position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh" } : {}) }}
                 className="window-container"
                 onClick={() => focusWindow(windowKey)}
             >
@@ -100,3 +111,4 @@ const windowWrapper = (component, windowKey) => {
 };
 
 export default windowWrapper;
+

@@ -3,6 +3,7 @@ import { Navbar } from "./components/navbar";
 import { Welcome_code } from "./components/welcome";
 import { Windows } from "./components/Windows";
 import gsap from "gsap";
+import Safari from "./windows/safari.jsx";
 
 import { Draggable } from "gsap/Draggable";
 // this below is to register dragabble windows 
@@ -18,6 +19,7 @@ function App() {
                 <Welcome_code />
                 <Dock />
                 <Windows />
+                <Safari />
             </div>
         </main>
     );
